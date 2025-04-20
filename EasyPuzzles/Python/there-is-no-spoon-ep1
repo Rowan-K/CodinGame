@@ -1,0 +1,26 @@
+import sys
+import math
+
+# Don't let the machines win. You are humanity's last hope...
+
+width = int(input())  # the number of cells on the X axis
+height = int(input())  # the number of cells on the Y axis
+cells = []
+for i in range(height):
+    cells.append(input())
+def right_node(x, y):
+    for i in range(x + 1, width):
+        if cells[y][i] == '0':
+            return (i, y)
+    return -1, -1
+def lower_node(x, y):
+    for i in range(y + 1, height):
+        if cells[i][x] == '0':
+            return (x, i)
+    return -1, -1
+for y in range(height):  # row
+    for x in range(width):  # column
+        if cells[y][x] == '0':
+            x2, y2 = right_node(x, y)
+            x3, y3 = lower_node(x, y)
+            print(f'{x} {y} {x2} {y2} {x3} {y3}')
